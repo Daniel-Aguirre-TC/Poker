@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Poker
 {
-    interface IWriteToTheConsole
+    public interface IWriteToTheConsole
     {
 
         #region SkipLines
@@ -233,16 +233,53 @@ namespace Poker
             return textToCenter.PadLeft((int)MathF.Round((Console.WindowWidth / 2) + (textToCenter.Length / 2)));
         }
 
+       
         /// <summary>
-        /// After the user presses any key clear the console.
+        /// Clear Console
         /// </summary>
-        static void ClearAfterKeyPress()
+        static void Clear()
         {
-            Console.ReadKey();
             Console.Clear();
         }
-
-
+        /// <summary>
+        /// Clear Console after key press.
+        /// </summary>
+        static void Clear(bool waitForKeyPress)
+        {
+            if (waitForKeyPress)
+            {
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else
+            Console.Clear();
+        }
+        /// <summary>
+        /// Clear Console then reprint the provided array of strings.
+        /// </summary>
+        /// <param name="ArrayToReprintAfterClear"></param>
+        static void Clear(string[] ArrayToReprintAfterClear)
+        {
+            Console.Clear();
+            PrintCenteredVerticalHorizontal(ArrayToReprintAfterClear);
+        }
+        /// <summary>
+        /// Wait for KeyPress, Clear Console, and then Reprint the provided array.
+        /// </summary>
+        /// <param name="waitForKeyPress"></param>
+        /// <param name="ArrayToReprintAfterClear"></param>
+        static void Clear(bool waitForKeyPress, string[] ArrayToReprintAfterClear)
+        {
+            if(waitForKeyPress)
+            {
+                Console.ReadKey();
+                Clear(ArrayToReprintAfterClear);
+            }
+            else
+            {
+                Clear(ArrayToReprintAfterClear);
+            }
+        }
 
     }
 }

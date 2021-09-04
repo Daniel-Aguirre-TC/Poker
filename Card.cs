@@ -162,7 +162,7 @@ namespace Poker
             // Print the card centered to the screen with message above concated below it.
             IWriteToTheConsole.PrintCenteredVerticalHorizontal(cardAndMessage, true);
             // Clear the screen after key press.
-            IWriteToTheConsole.ClearAfterKeyPress();
+            IWriteToTheConsole.Clear(true);
         }
     }
 }

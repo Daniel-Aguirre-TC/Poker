@@ -1,6 +1,7 @@
 ﻿namespace Poker
 {
-    internal class PlayerHand
+    public class PlayerHand
     {
+
     }
 }

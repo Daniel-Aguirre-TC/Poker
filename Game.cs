@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Poker
 {
-    public abstract class Game
+    public abstract class Game : IGetInput
     {
         public List<GamePlayer> Players { get; set; }
         GameDealer Dealer = new GameDealer();
@@ -12,10 +12,7 @@ namespace Poker
 
 
 
-        public void StartGame()
-        {
-
-        }
+        public abstract void StartGame();
 
 
 

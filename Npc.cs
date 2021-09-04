@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Poker
 {
-    class Npc
+    class Npc : GamePlayer
     {
+
     }
 }

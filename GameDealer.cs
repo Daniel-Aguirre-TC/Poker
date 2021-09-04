@@ -1,6 +1,13 @@
-﻿namespace Poker
+﻿using System.Collections.Generic;
+
+namespace Poker
 {
-    internal class GameDealer
+    class GameDealer
     {
+        public List<Card> GameDeck { get; set; }
+
+
+
+
     }
 }
