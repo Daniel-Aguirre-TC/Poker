@@ -38,7 +38,7 @@ namespace Poker
         /// <param name="arrayToReference"></param>
         static void SkipLines(string[] arrayToReference)
         {
-            for (int i = 0; i < (Console.WindowHeight / 2) - (arrayToReference.Length); i++)
+            for (int i = 0; i < (Console.WindowHeight / 2) - (arrayToReference.Length/2); i++)
             {
                 Console.WriteLine();
             }
@@ -46,7 +46,7 @@ namespace Poker
 
         #endregion
 
-
+        #region PrintCenteredHorizontal
 
         /// <summary>
         /// Print the provided string, centered horizontally, in a Console.WriteLine.
@@ -54,6 +54,18 @@ namespace Poker
         static void PrintCenteredHorizontal(string textToPrint)
         {
             Console.WriteLine(CenterHorizontal(textToPrint));
+        }
+
+        /// <summary>
+        /// Print an array of strings, each centered horizontally on their current line.
+        /// </summary>
+        /// <param name="arrayOfStringsToPrint"></param>
+        static void PrintCenteredHorizontal(string[] arrayOfStringsToPrint)
+        {
+            foreach (var str in arrayOfStringsToPrint)
+            {
+                PrintCenteredHorizontal(str);
+            }
         }
 
         /// <summary>
@@ -70,15 +82,11 @@ namespace Poker
             else PrintCenteredHorizontal(textToPrint);
         }
 
-        // print the provided string or string[] centered on the current line.
-        static void PrintCenteredHorizontal(string[] arrayOfStringsToPrint)
-        {
-            foreach (var str in arrayOfStringsToPrint)
-            {
-                PrintCenteredHorizontal(str);
-            }
-        }
-
+        /// <summary>
+        /// Print an array of strings centered horizontally, each on their own line.  If dontEndLine then the last string will use Console.Write() instead of WriteLine(). 
+        /// </summary>
+        /// <param name="arrayOfStringsToPrint"> </param>
+        /// <param name="dontEndLine"></param>
         static void PrintCenteredHorizontal(string[] arrayOfStringsToPrint, bool dontEndLine)
         {
             if (dontEndLine)
@@ -96,6 +104,12 @@ namespace Poker
             else PrintCenteredHorizontal(arrayOfStringsToPrint);
         }
 
+        /// <summary>
+        /// Print an array of strings centered horizontally, each on their own line. If dontEndLine then the last string will use Console.Write() instead of WriteLine(). If trimEnd then will remove white spaces from the end of each string before printing.
+        /// </summary>
+        /// <param name="arrayOfStringsToPrint"></param>
+        /// <param name="dontEndLine"></param>
+        /// <param name="trimEnd"></param>
         static void PrintCenteredHorizontal(string[] arrayOfStringsToPrint, bool dontEndLine, bool trimEnd)
         {
             if (dontEndLine && trimEnd)
@@ -136,7 +150,15 @@ namespace Poker
             else PrintCenteredHorizontal(arrayOfStringsToPrint);
         }
 
-        //Clear Console, then print the provided string or string[] centered vertically and horizontally
+        #endregion
+
+        #region PrintCenteredVerticalHorizontal
+
+
+
+
+
+        #endregion
 
         static void PrintCenteredVerticalHorizontal(string stringToPrint)
         {

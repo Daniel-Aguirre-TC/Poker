@@ -145,15 +145,6 @@ namespace Poker
             return $"{cardName} of {cardSuit}";
         }
 
-
-        //public card(string name, string stringforcard, string suit, int value)
-        //{
-        //    _name = name;
-        //    _value = value;
-        //    _stringforcard = stringforcard;
-        //    _suit = suit;
-        //}
-
         public string[] ReturnCardArray()
         {
             return IDrawCards.CardForConsole(_StringForCard, _Suit);
@@ -161,17 +152,17 @@ namespace Poker
 
         public void ReceivedCardScreen()
         {
+            string a = _Name.Contains("Eight") || _Name.Contains("Ace") ? "an" : "a";
             // message to display under the card.
             var message = new string[]
             {
-                "", "", $"You were dealt a {_Name}!", "", "Press any key to continue. "
+                "", "", $"You were dealt {a} {_Name}!", "", "Press any key to continue. "
             };
+            var cardAndMessage = ReturnCardArray().Concat(message).ToArray();
             // Print the card centered to the screen with message above concated below it.
-            IWriteToTheConsole.PrintCenteredVerticalHorizontal(ReturnCardArray().Concat(message).ToArray() , true);
+            IWriteToTheConsole.PrintCenteredVerticalHorizontal(cardAndMessage, true);
             // Clear the screen after key press.
             IWriteToTheConsole.ClearAfterKeyPress();
         }
-
-
     }
 }
