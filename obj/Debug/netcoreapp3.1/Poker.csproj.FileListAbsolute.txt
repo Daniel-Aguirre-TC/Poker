@@ -1,0 +1,13 @@
+C:\Users\Second-Desktop\repos\Poker\bin\Debug\netcoreapp3.1\Poker.exe
+C:\Users\Second-Desktop\repos\Poker\bin\Debug\netcoreapp3.1\Poker.deps.json
+C:\Users\Second-Desktop\repos\Poker\bin\Debug\netcoreapp3.1\Poker.runtimeconfig.json
+C:\Users\Second-Desktop\repos\Poker\bin\Debug\netcoreapp3.1\Poker.runtimeconfig.dev.json
+C:\Users\Second-Desktop\repos\Poker\bin\Debug\netcoreapp3.1\Poker.dll
+C:\Users\Second-Desktop\repos\Poker\bin\Debug\netcoreapp3.1\Poker.pdb
+C:\Users\Second-Desktop\repos\Poker\obj\Debug\netcoreapp3.1\Poker.csproj.AssemblyReference.cache
+C:\Users\Second-Desktop\repos\Poker\obj\Debug\netcoreapp3.1\Poker.AssemblyInfoInputs.cache
+C:\Users\Second-Desktop\repos\Poker\obj\Debug\netcoreapp3.1\Poker.AssemblyInfo.cs
+C:\Users\Second-Desktop\repos\Poker\obj\Debug\netcoreapp3.1\Poker.csproj.CoreCompileInputs.cache
+C:\Users\Second-Desktop\repos\Poker\obj\Debug\netcoreapp3.1\Poker.dll
+C:\Users\Second-Desktop\repos\Poker\obj\Debug\netcoreapp3.1\Poker.pdb
+C:\Users\Second-Desktop\repos\Poker\obj\Debug\netcoreapp3.1\Poker.genruntimeconfig.cache
