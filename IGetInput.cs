@@ -5,6 +5,81 @@ namespace Poker
     public interface IGetInput : IWriteToTheConsole
     {
 
+        #region GetStringResponse
+
+        /// <summary>
+        /// Clear screen, Print a message centered, and then return Console.Readline
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static string GetStringResponse(string[] message)
+        {
+            PrintCenteredVerticalHorizontal(message);
+            return Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Clear screen, Print a message centered, and then return Console.Readline as long as the response is under the provided charLimit.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static string GetStringResponse(string[] message, int charLimit)
+        {
+            PrintCenteredVerticalHorizontal(message);
+            var response = Console.ReadLine();
+            if(response.Length > charLimit)
+            {
+                InvalidInputMessage(charLimit);
+                return GetStringResponse(message, charLimit);
+            }           
+            return response;
+        }
+
+        /// <summary>
+        /// Clear screen, Print a message centered, use Console.Write for last line if dontEndLine is true, and then return Console.Readline
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static string GetStringResponse(string[] message, bool dontEndLine)
+        {
+            if(dontEndLine)
+            {
+                PrintCenteredVerticalHorizontal(message, true);
+            }
+            else
+            {
+                PrintCenteredVerticalHorizontal(message);
+            }
+            return Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Clear screen, Print a message centered, use Console.Write for last line if dontEndLine is true, and then return Console.Readline if it is below charLimit
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static string GetStringResponse(string[] message, bool dontEndLine, int charLimit)
+        {
+            if (dontEndLine)
+            {
+                PrintCenteredVerticalHorizontal(message, true);
+            }
+            else
+            {
+                PrintCenteredVerticalHorizontal(message);
+            }
+            var response = Console.ReadLine();
+            if (response.Length > charLimit)
+            {
+                InvalidInputMessage(charLimit);
+                return GetStringResponse(message, charLimit);
+            }
+            return response;
+        }
+
+
+
+        #endregion
 
 
 
@@ -44,13 +119,23 @@ namespace Poker
             {
                 if(input != 0 && input <= optionsToDisplay.Length)
                 {
-                    PrintCenteredVerticalHorizontal("Valid Option Selected.");
-                    Clear(true);    
                     return input;
                 }
             }
             InvalidInputMessage(charInput);
             return OptionList(everythingAboveOptions, optionsToDisplay, inputRequestMessage);
+        }
+
+        static void InvalidInputMessage(int charLimit)
+        {
+            var limit = charLimit;
+            PrintCenteredVerticalHorizontal(new string[]
+            {
+                "I'm sorry, but I cannot accept your entry.", "",
+                $"Your entry must be greater than 0 and less than {charLimit}", "",
+                "Press any key to return. "
+            }, true);
+            Clear(true);
         }
 
         /// <summary>
