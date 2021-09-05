@@ -16,7 +16,7 @@ namespace Poker
         /// <summary>
         /// Foreach Card.CardSuit, we will add a new card to the deck foreach Card.CardName
         /// </summary>
-        public virtual void PopulateDeck(List<Card> deck)
+        public static void PopulateDeck(List<Card> deck)
         {
             foreach (Card.CardSuit suit in Enum.GetValues(typeof(Card.CardSuit)))
             {
@@ -30,26 +30,29 @@ namespace Poker
         /// <summary>
         /// Deal a card from the provided deck to the provided hand. 
         /// </summary>
-        /// <param name="deckToDealFrom"></param>
+        /// <param name="deck"></param>
         /// <param name="HandToDealTo"></param>
         /// <returns></returns>
-        public virtual Card DealCard(List<Card> deckToDealFrom, List<Card> HandToDealTo)
+        public static Card DealCard(List<Card> deck)
         {
             // random object used to pull a random card.
             var random = new Random();
-            var indexOfCardToPull = random.Next(0, deckToDealFrom.Count - 1);
+            var indexOfCardToPull = random.Next(0, deck.Count - 1);
             // store the string of card pulled in cardPulled
-            Card cardPulled = deckToDealFrom[indexOfCardToPull];
+            Card cardPulled = deck[indexOfCardToPull];
             // remove the card pulled from this instance of deck
-            deckToDealFrom.RemoveAt(indexOfCardToPull);
+            deck.RemoveAt(indexOfCardToPull);
             // if deck is now empty, then repopulate.
-            if (deckToDealFrom.Count == 0)
+            if (deck.Count == 0)
             {
-                PopulateDeck(deckToDealFrom);
+                PopulateDeck(deck);
             }
             // return cardPulled string.
             return cardPulled;
         }
 
+        public void FirstDeal();
+
     }
 }
+

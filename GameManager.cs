@@ -6,6 +6,7 @@ namespace Poker
 {
     public static class GameManager
     {
+        public static Game CurrentGame { get; set; }
         static bool ProgramRunning = false;
         public static List<UserPlayer> Players { get; set; }
 
@@ -13,8 +14,6 @@ namespace Poker
         {
             Players = new List<UserPlayer>();
         }
-
-
 
         public static void StartProgram()
         {
@@ -25,10 +24,54 @@ namespace Poker
             {
                 Players.Add(new UserPlayer());
             }
-
-
+            // GetGameType will start the game needed based on input received.
+            GetGameType();
+            CurrentGame.StartGame();
         }
 
+        static void GetGameType()
+        {
+
+            string[] message = new string[]
+            {
+                "What type of game would you like to play?", "",
+            };
+            string[] options = new string[]
+            {
+                "Black Jack     ",
+                "End Application",
+            };
+            string[] inputRequestMessage = new string[]
+            {
+                "","Selection: "
+            };
+            int option = IGetInput.OptionList(message, options, inputRequestMessage);
+            switch (option)
+            {
+                case 1:
+                    CurrentGame = new BlackJackGame(Players, new BlackJackDealer());
+                    break;
+                case 2:
+                    EndApplication();
+                    break;
+            }
+        }
+
+        static void EndApplication()
+        {
+            ProgramRunning = false;
+            IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[] {
+                "Thank you for playing at Red Rain Casino!", "",
+                "Come play again any time!", "",
+                "Created by Daniel Aguirre. "
+                }, true);
+            IWriteToTheConsole.Clear(true);
+        }
+
+        /// <summary>
+        /// Ask how many players, and then instantiate a UserPlay for however many entered.
+        /// </summary>
+        /// <returns></returns>
         static int GetPlayerCount()
         {
             string[] message = new string[]
@@ -67,6 +110,9 @@ namespace Poker
 
         }
 
+        /// <summary>
+        /// Display a message to greet the user when the application opens.
+        /// </summary>
         static void GreetUser()
         {
             IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[]{

@@ -7,14 +7,18 @@ namespace Poker
     class BlackJackGame : Game
     {
         public bool Hit21 { get; set; }
+        public new BlackJackDealer Dealer { get; set; }
 
+        /// <summary>
+        /// StillPlaying set to true. Foreach players passed in, add to Players list. MakeNpc() then call StartGame()
+        /// </summary>
+        /// <param name="players"></param>
+        public BlackJackGame(List<UserPlayer> players, BlackJackDealer dealer) : base(players, dealer)
+        {
+            Dealer = dealer;
 
-
+        }
         
-
-
-
-
 
         static string[] deckConsoleImage = new string[]
         {
@@ -32,9 +36,17 @@ namespace Poker
                     "|_____________|",
         };
 
+
         public override void StartGame()
         {
-            throw new NotImplementedException();
+            while(StillPlaying)
+            {
+                Dealer.FirstDeal();
+
+                IWriteToTheConsole.Clear(true);
+            }
+
+
         }
     }
 }

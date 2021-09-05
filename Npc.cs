@@ -18,10 +18,11 @@ namespace Poker
         /// </summary>
         static Npc()
         {
-            NamePool.AddRange(new string[]
+            NamePool = new List<string>()
             {
                 "Billy Bob", "Fedor Holz", "Patrik Antonius", "Phil Hellmuth"
-            });
+            };
+            UsedNames = new List<string>();
 
 
         }
@@ -31,8 +32,8 @@ namespace Poker
             AssignName();
             IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[] { 
                 $"{Name} is approaching the table!", "",
-                $"We now have a total of {TotalPlayerCount} players at the table."
-            });
+                $"We now have a total of {TotalPlayerCount} players at the table. "
+            }, true);
 
         }
 

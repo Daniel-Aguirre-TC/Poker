@@ -11,6 +11,7 @@ namespace Poker
 
         public GamePlayer()
         {
+            Hand = new List<Card>();
             TotalPlayerCount++;
         }
 
