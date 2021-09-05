@@ -77,8 +77,6 @@ namespace Poker
             return response;
         }
 
-
-
         #endregion
 
 
@@ -126,6 +124,12 @@ namespace Poker
             return OptionList(everythingAboveOptions, optionsToDisplay, inputRequestMessage);
         }
 
+        #region Invalid Input Messages
+
+        /// <summary>
+        /// Invalid message to display if the entry is longer than the provided charLimit.
+        /// </summary>
+        /// <param name="charLimit"></param>
         static void InvalidInputMessage(int charLimit)
         {
             var limit = charLimit;
@@ -153,6 +157,9 @@ namespace Poker
             Clear(true);
         }
 
+        #endregion
+       
+        
         /// <summary>
         /// Used to convert enter char to prevent issues with printing to the console.
         /// </summary>

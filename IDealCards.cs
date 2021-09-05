@@ -7,6 +7,8 @@ namespace Poker
     interface IDealCards
     {
         public void CheckHands();
+        public void FirstDeal();
+        public int CalculateHand(List<Card> handToCheck);
 
         public virtual void ShuffleDeck()
         {
@@ -51,8 +53,7 @@ namespace Poker
             return cardPulled;
         }
 
-        public void FirstDeal();
-
+ 
     }
 }
 

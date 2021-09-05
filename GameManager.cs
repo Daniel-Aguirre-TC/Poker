@@ -10,11 +10,17 @@ namespace Poker
         static bool ProgramRunning = false;
         public static List<UserPlayer> Players { get; set; }
 
+        /// <summary>
+        /// Static constructor will instantiate the List of players
+        /// </summary>
         static GameManager()
         {
             Players = new List<UserPlayer>();
         }
 
+        /// <summary>
+        /// Called from Program, will Greet the user, ask how many players to create, and then start the requested game.
+        /// </summary>
         public static void StartProgram()
         {
             GreetUser();
@@ -25,10 +31,75 @@ namespace Poker
                 Players.Add(new UserPlayer());
             }
             // GetGameType will start the game needed based on input received.
-            GetGameType();
-            CurrentGame.StartGame();
+
+            while(ProgramRunning)
+            {
+                GetGameType();
+                CurrentGame.StartGame();
+                //TODO: Ask the player if they wish to return to chose a game, or end the application.
+
+            }
+
         }
 
+        /// <summary>
+        /// Display a message to greet the user when the application opens.
+        /// </summary>
+        static void GreetUser()
+        {
+            IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[]{
+                "Welcome to Red Rain Casino!", "",
+                "Thank you for taking the time to play my Poker Application.", "",
+                "Created by Daniel Aguirre. "
+            }, true);
+            IWriteToTheConsole.Clear(true);
+        }
+
+        /// <summary>
+        /// Ask how many players, and then instantiate a UserPlay for however many entered.
+        /// </summary>
+        /// <returns></returns>
+        static int GetPlayerCount()
+        {
+            string[] message = new string[]
+            {
+                "How many players will be joining us today?", "",
+            };
+            string[] options = new string[]
+            {
+                "One Player ", "Two Players"
+            };
+            string[] inputRequestMessage = new string[]
+            {
+                "","Players:   "
+            };
+            int option = IGetInput.OptionList(message, options, inputRequestMessage);
+            switch (option)
+            {
+                case 1:
+                    IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[]
+                    {
+                        "One Player Selected.", "",
+                        "Press any key to continue. "
+                    }, true);
+                    IWriteToTheConsole.Clear(true);
+                    return 1;
+                case 2:
+                    IWriteToTheConsole.PrintCenteredVerticalHorizontal("I'm sorry, two player is not yet set up. ", true);
+                    IWriteToTheConsole.Clear(true);
+                    return GetPlayerCount();
+
+                default:
+                    IWriteToTheConsole.PrintCenteredVerticalHorizontal("Error selecting players. Returning to previous screen. ", true);
+                    IWriteToTheConsole.Clear(true);
+                    return GetPlayerCount();
+            }
+
+        }
+
+        /// <summary>
+        /// Ask the player what type of game they wish to play
+        /// </summary>
         static void GetGameType()
         {
 
@@ -57,6 +128,9 @@ namespace Poker
             }
         }
 
+        /// <summary>
+        /// Change ProgramRunning to false and display a message before ending the application.
+        /// </summary>
         static void EndApplication()
         {
             ProgramRunning = false;
@@ -65,61 +139,6 @@ namespace Poker
                 "Come play again any time!", "",
                 "Created by Daniel Aguirre. "
                 }, true);
-            IWriteToTheConsole.Clear(true);
-        }
-
-        /// <summary>
-        /// Ask how many players, and then instantiate a UserPlay for however many entered.
-        /// </summary>
-        /// <returns></returns>
-        static int GetPlayerCount()
-        {
-            string[] message = new string[]
-            {
-                "How many players will be joining us today?", "",
-            };
-            string[] options = new string[]
-            {
-                "One Player ", "Two Players"
-            };
-            string[] inputRequestMessage = new string[]
-            {
-                "","Players:   "
-            };
-            int option = IGetInput.OptionList(message, options, inputRequestMessage);
-            switch(option)
-            {
-                case 1:
-                    IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[]
-                    {
-                        "One Player Selected.", "",
-                        "Press any key to continue. "
-                    }, true);
-                    IWriteToTheConsole.Clear(true);
-                    return 1;
-                case 2:
-                    IWriteToTheConsole.PrintCenteredVerticalHorizontal("I'm sorry, two player is not yet set up.");
-                    IWriteToTheConsole.Clear(true);
-                    return GetPlayerCount();
-
-                default:
-                    IWriteToTheConsole.PrintCenteredVerticalHorizontal("Error selecting players. Returning to previous screen.");
-                    IWriteToTheConsole.Clear(true);
-                    return GetPlayerCount();
-            }
-
-        }
-
-        /// <summary>
-        /// Display a message to greet the user when the application opens.
-        /// </summary>
-        static void GreetUser()
-        {
-            IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[]{
-                "Welcome to Red Rain Casino!", "",
-                "Thank you for taking the time to play my Poker Application.", "",
-                "Created by Daniel Aguirre. "
-            }, true);
             IWriteToTheConsole.Clear(true);
         }
 

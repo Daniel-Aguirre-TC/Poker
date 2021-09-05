@@ -7,7 +7,15 @@ namespace Poker
         public string Name { get; set; }
         public List<Card> Hand { get; set; }
 
+        /// <summary>
+        /// Assign name to GamePlayer.
+        /// </summary>
         public abstract void AssignName();
+        /// <summary>
+        /// Message to display after name is assigned.
+        /// </summary>
+        public abstract void PlayerCreatedMessage();
+        
 
         public GamePlayer()
         {

@@ -23,9 +23,11 @@ namespace Poker
             {
                 Players.Add(player);
             }
-            MakeNpc();
         }
 
+        /// <summary>
+        /// StartGame should be the first method called for each Game.
+        /// </summary>
         public abstract void StartGame();
 
         /// <summary>
@@ -34,7 +36,15 @@ namespace Poker
         public virtual void MakeNpc()
         {
             Players.Add(new Npc());
-            IWriteToTheConsole.Clear(true);
+        }
+
+        /// <summary>
+        /// Create an Npc, if isTrue then will be named "Dealer"
+        /// </summary>
+        /// <param name="isDealer"></param>
+        public virtual void MakeNpc(bool isDealer)
+        {
+            Players.Add(new Npc(isDealer));
         }
 
 

@@ -39,10 +39,10 @@ namespace Poker
 
         public override void StartGame()
         {
-            while(StillPlaying)
+            MakeNpc(true);
+            while (StillPlaying)
             {
                 Dealer.FirstDeal();
-
                 IWriteToTheConsole.Clear(true);
             }
 

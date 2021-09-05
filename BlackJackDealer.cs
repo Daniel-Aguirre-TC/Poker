@@ -18,13 +18,44 @@ namespace Poker
         }
 
 
-
-        public void CheckHands()
+        /// <summary>
+        /// calculate the hand. If the hand surpasses 21 and the player has an ace, then will return the hand with ten points reduced.
+        /// </summary>
+        /// <param name="handToCheck"></param>
+        /// <returns></returns>
+        public int CalculateHand(List<Card> handToCheck)
         {
+            bool foundAnAce = false;
+            int sum = 0;
+            foreach (var card in handToCheck)
+            {
+                if(card._Name.Contains("Ace"))
+                {
+                    foundAnAce = true;
+                }
+                sum += card._Value;
+            }
+            if(sum > 21 && foundAnAce)
+            {
+                return sum - 10;
+            }
+            return sum;
+
 
         }
 
+        public void CheckHands()
+        {
+            foreach (var player in AllPlayers)
+            {
 
+            }
+
+        }
+
+        /// <summary>
+        /// Deal two cards to each player. If the player receiving card is a user player then display the card received.
+        /// </summary>
         public void FirstDeal()
         {
             // deal two cards to each player.
