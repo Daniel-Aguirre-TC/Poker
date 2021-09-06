@@ -5,23 +5,25 @@ using System.Linq;
 
 namespace Poker
 {
-    public class Card : IDrawCards, IWriteToTheConsole
+    public class Card : IDrawCards
     {
         public enum CardSuit { Spades, Clubs, Hearts, Diamonds}
         public enum CardName { Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King }
 
         public int _Value { get; set; }
         public string _Name { get; set; }
-        public string _StringForCard { get; set; }
-        public string _Suit { get; set; }
+        public string StringForCard { get; set; }
+        public string Suit { get; set; }
 
         public Card(CardName Name, CardSuit Suit )
         {
             _Name = ConvertName(Name, Suit);
-            _Suit = ConvertSymbol(Suit);
+            this.Suit = ConvertSymbol(Suit);
             _Value = ConvertValue(Name);
-            _StringForCard = ConvertStringForCard(Name, Suit);
+            StringForCard = ConvertStringForCard(Name, Suit);
         }
+
+
         /// <summary>
         /// Return string to display on card based on CardName and CardSuit provided. Such as "A ♠"
         /// </summary>
@@ -145,9 +147,10 @@ namespace Poker
             return $"{cardName} of {cardSuit}";
         }
 
+
         public string[] ReturnCardArray()
         {
-            return IDrawCards.CardForConsole(_StringForCard, _Suit);
+            return IDrawCards.CardForConsole(StringForCard, Suit);
         }
 
         public void ReceivedCardScreen()
@@ -160,9 +163,7 @@ namespace Poker
             };
             var cardAndMessage = ReturnCardArray().Concat(message).ToArray();
             // Print the card centered to the screen with message above concated below it.
-            IWriteToTheConsole.PrintCenteredVerticalHorizontal(cardAndMessage, true);
-            // Clear the screen after key press.
-            IWriteToTheConsole.Clear(true);
+            ConsoleController.PrintCenteredVerticalHorizontal(cardAndMessage, true, true);
         }
     }
 }

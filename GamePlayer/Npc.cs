@@ -82,12 +82,11 @@ namespace Poker
             if (isDealer)
             {
                 var message = isDealer ? "The Dealer is preparing the table." : $"{Name} is approaching the table!";
-                IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[] {
+                ConsoleController.PrintCenteredVerticalHorizontal(new string[] {
                     message, "",
                     $"We now have a total of {TotalPlayerCount} players at the table. "
 
-                }, true);
-                IWriteToTheConsole.Clear(true);
+                }, true, true);
             }
             else PlayerCreatedMessage();
 
@@ -98,11 +97,10 @@ namespace Poker
         /// </summary>
         public override void PlayerCreatedMessage()
         {
-            IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[] {
+            ConsoleController.PrintCenteredVerticalHorizontal(new string[] {
                 $"{Name} is approaching the table!", "",
                 $"We now have a total of {TotalPlayerCount} players at the table. "
-            }, true);
-            IWriteToTheConsole.Clear(true);
+            }, true, true);
         }
     }
 }

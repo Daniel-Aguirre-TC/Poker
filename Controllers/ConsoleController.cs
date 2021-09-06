@@ -4,15 +4,16 @@ using System.Text;
 
 namespace Poker
 {
-    public interface IWriteToTheConsole
+    public static class ConsoleController
     {
+
 
         #region SkipLines
 
         /// <summary>
         /// Skip lines to center the current line vertically.
         /// </summary>
-        static void SkipLines()
+        public static void SkipLines()
         {
             for (int i = 0; i < (Console.WindowHeight / 2); i++)
             {
@@ -24,7 +25,7 @@ namespace Poker
         /// Skip a specified number of lines.
         /// </summary>
         /// <param name="linesToSkip"></param>
-        static void SkipLines(int linesToSkip)
+        public static void SkipLines(int linesToSkip)
         {
             for (int i = 0; i < linesToSkip; i++)
             {
@@ -36,9 +37,9 @@ namespace Poker
         /// Skip lines based on a provided array of strings to center the array of strings vertically.
         /// </summary>
         /// <param name="arrayToReference"></param>
-        static void SkipLines(string[] arrayToReference)
+        public static void SkipLines(string[] arrayToReference)
         {
-            for (int i = 0; i < (Console.WindowHeight / 2) - (arrayToReference.Length/2); i++)
+            for (int i = 0; i < (Console.WindowHeight / 2) - (arrayToReference.Length / 2); i++)
             {
                 Console.WriteLine();
             }
@@ -51,7 +52,7 @@ namespace Poker
         /// <summary>
         /// Print the provided string, centered horizontally, in a Console.WriteLine.
         /// </summary>
-        static void PrintCenteredHorizontal(string textToPrint)
+        public static void PrintCenteredHorizontal(string textToPrint)
         {
             Console.WriteLine(CenterHorizontal(textToPrint));
         }
@@ -60,7 +61,7 @@ namespace Poker
         /// Print an array of strings, each centered horizontally on their current line.
         /// </summary>
         /// <param name="arrayOfStringsToPrint"></param>
-        static void PrintCenteredHorizontal(string[] arrayOfStringsToPrint)
+        public static void PrintCenteredHorizontal(string[] arrayOfStringsToPrint)
         {
             foreach (var str in arrayOfStringsToPrint)
             {
@@ -73,7 +74,7 @@ namespace Poker
         /// </summary>
         /// <param name="textToPrint"></param>
         /// <param name="dontEndLine"></param>
-        static void PrintCenteredHorizontal(string textToPrint, bool dontEndLine)
+        public static void PrintCenteredHorizontal(string textToPrint, bool dontEndLine)
         {
             if (dontEndLine)
             {
@@ -87,7 +88,7 @@ namespace Poker
         /// </summary>
         /// <param name="arrayOfStringsToPrint"> </param>
         /// <param name="dontEndLine"></param>
-        static void PrintCenteredHorizontal(string[] arrayOfStringsToPrint, bool dontEndLine)
+        public static void PrintCenteredHorizontal(string[] arrayOfStringsToPrint, bool dontEndLine)
         {
             if (dontEndLine)
             {
@@ -110,7 +111,7 @@ namespace Poker
         /// <param name="arrayOfStringsToPrint"></param>
         /// <param name="dontEndLine"></param>
         /// <param name="trimEnd"></param>
-        static void PrintCenteredHorizontal(string[] arrayOfStringsToPrint, bool dontEndLine, bool trimEnd)
+        public static void PrintCenteredHorizontal(string[] arrayOfStringsToPrint, bool dontEndLine, bool trimEnd)
         {
             if (dontEndLine && trimEnd)
             {
@@ -154,29 +155,13 @@ namespace Poker
 
         #region PrintCenteredVerticalHorizontal
 
-
-
-
-
-        #endregion
-
-        static void PrintCenteredVerticalHorizontal(string stringToPrint)
+        public static void PrintCenteredVerticalHorizontal(string stringToPrint)
         {
             Console.Clear();
             SkipLines();
             Console.WriteLine(CenterHorizontal(stringToPrint));
         }
-        static void PrintCenteredVerticalHorizontal(string[] arrayOfStringsToPrint)
-        {
-            Console.Clear();
-            SkipLines(arrayOfStringsToPrint);
-            foreach (var textLine in arrayOfStringsToPrint)
-            {
-                Console.WriteLine(CenterHorizontal(textLine));
-            }
-        }
-        // CenterMidScreenAndPrint but if bool is true then we will do a Write instead of WriteLine.
-        static void PrintCenteredVerticalHorizontal(string stringToPrint, bool dontEndLine)
+        public static void PrintCenteredVerticalHorizontal(string stringToPrint, bool dontEndLine)
         {
             Console.Clear();
             SkipLines(Console.WindowHeight / 2);
@@ -186,7 +171,26 @@ namespace Poker
             }
             else Console.WriteLine(CenterHorizontal(stringToPrint));
         }
-        static void PrintCenteredVerticalHorizontal(string[] arrayOfStringsToPrint, bool dontEndLastLine)
+        public static void PrintCenteredVerticalHorizontal(string stringToPrint, bool dontEndLine, bool clearAfterReadKey)
+        {
+            PrintCenteredVerticalHorizontal(stringToPrint, dontEndLine);
+            if(clearAfterReadKey)
+            {
+                Clear(true);
+            }
+        }
+        public static void PrintCenteredVerticalHorizontal(string[] arrayOfStringsToPrint)
+        {
+            Console.Clear();
+            SkipLines(arrayOfStringsToPrint);
+            foreach (var textLine in arrayOfStringsToPrint)
+            {
+                Console.WriteLine(CenterHorizontal(textLine));
+            }
+        }
+        // CenterMidScreenAndPrint but if bool is true then we will do a Write instead of WriteLine.
+
+        public static void PrintCenteredVerticalHorizontal(string[] arrayOfStringsToPrint, bool dontEndLastLine)
         {
             Console.Clear();
             SkipLines(arrayOfStringsToPrint);
@@ -200,9 +204,20 @@ namespace Poker
                 else Console.Write(CenterHorizontal(arrayOfStringsToPrint[i]));
             }
         }
-        static void PrintCenteredVerticalHorizontal(string[] arrayOfStringsToPrint, int lengthOfStringToMatchPaddingOf)
+
+        public static void PrintCenteredVerticalHorizontal(string[] arrayOfStringsToPrint, bool dontEndLastLine, bool clearAfterReadkey)
         {
-            Console.Clear();
+            PrintCenteredVerticalHorizontal(arrayOfStringsToPrint, dontEndLastLine);
+            if (clearAfterReadkey)
+            {
+                Clear(true);
+            }
+        }
+
+
+        public static void PrintCenteredVerticalHorizontal(string[] arrayOfStringsToPrint, int lengthOfStringToMatchPaddingOf)
+        {
+            Clear();
             for (int i = 0; i < (Console.WindowHeight / 2) - (arrayOfStringsToPrint.Length); i++)
             {
                 Console.WriteLine();
@@ -218,13 +233,14 @@ namespace Poker
             }
         }
 
+        #endregion
 
         /// <summary>
         /// Return the provided string, with padding to the left to center it horizontally on the screen based on Console.WindowWidth
         /// </summary>
         /// <param name="textToCenter"></param>
         /// <returns></returns>
-        static string CenterHorizontal(string textToCenter)
+        public static string CenterHorizontal(string textToCenter)
         {
             if (textToCenter == null)
             {
@@ -233,18 +249,17 @@ namespace Poker
             return textToCenter.PadLeft((int)MathF.Round((Console.WindowWidth / 2) + (textToCenter.Length / 2)));
         }
 
-       
         /// <summary>
         /// Clear Console
         /// </summary>
-        static void Clear()
+        public static void Clear()
         {
             Console.Clear();
         }
         /// <summary>
         /// Clear Console after key press.
         /// </summary>
-        static void Clear(bool waitForKeyPress)
+        public static void Clear(bool waitForKeyPress)
         {
             if (waitForKeyPress)
             {
@@ -252,13 +267,13 @@ namespace Poker
                 Console.Clear();
             }
             else
-            Console.Clear();
+                Console.Clear();
         }
         /// <summary>
         /// Clear Console then reprint the provided array of strings.
         /// </summary>
         /// <param name="ArrayToReprintAfterClear"></param>
-        static void Clear(string[] ArrayToReprintAfterClear)
+        public static void Clear(string[] ArrayToReprintAfterClear)
         {
             Console.Clear();
             PrintCenteredVerticalHorizontal(ArrayToReprintAfterClear);
@@ -268,9 +283,9 @@ namespace Poker
         /// </summary>
         /// <param name="waitForKeyPress"></param>
         /// <param name="ArrayToReprintAfterClear"></param>
-        static void Clear(bool waitForKeyPress, string[] ArrayToReprintAfterClear)
+        public static void Clear(bool waitForKeyPress, string[] ArrayToReprintAfterClear)
         {
-            if(waitForKeyPress)
+            if (waitForKeyPress)
             {
                 Console.ReadKey();
                 Clear(ArrayToReprintAfterClear);
@@ -280,6 +295,7 @@ namespace Poker
                 Clear(ArrayToReprintAfterClear);
             }
         }
+
 
     }
 }

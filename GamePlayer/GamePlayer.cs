@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 namespace Poker
 {
-    public abstract class GamePlayer : IWriteToTheConsole
+    public abstract class GamePlayer
     {
 
         //TODO: Can I make this appear when hovering over TotalPlayerCount?

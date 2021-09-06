@@ -10,6 +10,7 @@ namespace Poker
         /// Total number of User Players created to use the application.
         /// </summary>
         static int PlayerCount = 0;
+        static int NameMaxLength { get; set; } = 15;
 
         /// <summary>
         /// Increase player count by one and then AssignName() followed by ArrivalMessage() displaying.
@@ -26,12 +27,11 @@ namespace Poker
         /// </summary>
         public override void PlayerCreatedMessage()
         {
-            IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[] {
+            ConsoleController.PrintCenteredVerticalHorizontal(new string[] {
             $"Nice to meet you, {Name}!", "",
             "I hope you're ready to play some cards!", "",
             "Press any key to continue."
-            }, true);
-            IWriteToTheConsole.Clear(true);
+            }, true, true);
         }
 
         /// <summary>
@@ -39,11 +39,11 @@ namespace Poker
         /// </summary>
         public override void AssignName()
         {
-            Name = IGetInput.GetStringResponse(new string[] {
+            Name = InputController.GetStringResponse(new string[] {
             $"Player {PlayerCount} please enter your name.", "",
-            "Please keep your name below 15 characters long.", "",
+            $"Please keep your name below {NameMaxLength} characters long.", "",
             "Name: ",
-            }, true, 15);
+            }, true, NameMaxLength);
             PlayerCreatedMessage();
 
         }

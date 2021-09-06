@@ -59,7 +59,7 @@ namespace Poker
             while (StillPlaying)
             {
                 Dealer.FirstDeal();
-                IWriteToTheConsole.Clear(true);
+                ConsoleController.Clear(true);
             }
 
 

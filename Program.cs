@@ -2,7 +2,7 @@
 
 namespace Poker
 {
-    class Program : IGetInput
+    class Program
     {
         static void Main(string[] args)
         {

@@ -4,14 +4,14 @@ using System.Text;
 
 namespace Poker
 {
-    class BlackJackDealer : GameDealer, IDealCards, IGetInput
+    class BlackJackDealer : GameDealer
     {
         /// <summary>
         /// Constructor for BlackJackDealer will populate a new deck.
         /// </summary>
         public BlackJackDealer()
         {
-            IDealCards.PopulateDeck(GameDeck);
+            PopulateDeck(GameDeck);
         }
 
         public void AskHitOrStay()
@@ -25,7 +25,7 @@ namespace Poker
         /// </summary>
         /// <param name="handToCheck"></param>
         /// <returns></returns>
-        public int CalculateHand(List<Card> handToCheck)
+        public override int CalculateHand(List<Card> handToCheck)
         {
             bool foundAnAce = false;
             int sum = 0;
@@ -49,7 +49,7 @@ namespace Poker
         /// <summary>
         /// Calculate the score for each player. 
         /// </summary>
-        public void CheckHands()
+        public override void CheckHands()
         {
             foreach (var player in AllPlayers)
             {
@@ -61,14 +61,14 @@ namespace Poker
         /// <summary>
         /// Deal two cards to each player. If the player receiving card is a user player then display the card received.
         /// </summary>
-        public void FirstDeal()
+        public override void FirstDeal()
         {
             // deal two cards to each player.
             for (int i = 0; i < 2; i++)
             {
                 for (int playerIndex = 0; playerIndex < AllPlayers.Count - 1; playerIndex++)
                 {
-                    Card pulled = IDealCards.DealCard(GameDeck);
+                    Card pulled = DealCard(GameDeck);
                     AllPlayers[playerIndex].Hand.Add(pulled);
                     if(AllPlayers[playerIndex] is UserPlayer)
                     {

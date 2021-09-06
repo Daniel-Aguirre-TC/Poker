@@ -47,12 +47,12 @@ namespace Poker
         /// </summary>
         static void GreetUser()
         {
-            IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[]{
+            ConsoleController.PrintCenteredVerticalHorizontal(new string[]{
                 "Welcome to Red Rain Casino!", "",
                 "Thank you for taking the time to play my Poker Application.", "",
                 "Created by Daniel Aguirre. "
             }, true);
-            IWriteToTheConsole.Clear(true);
+            ConsoleController.Clear(true);
         }
 
         /// <summary>
@@ -73,25 +73,22 @@ namespace Poker
             {
                 "","Players:   "
             };
-            int option = IGetInput.OptionList(message, options, inputRequestMessage);
+            int option = InputController.OptionList(message, options, inputRequestMessage);
             switch (option)
             {
                 case 1:
-                    IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[]
+                    ConsoleController.PrintCenteredVerticalHorizontal(new string[]
                     {
                         "One Player Selected.", "",
                         "Press any key to continue. "
-                    }, true);
-                    IWriteToTheConsole.Clear(true);
+                    }, true, true);
                     return 1;
                 case 2:
-                    IWriteToTheConsole.PrintCenteredVerticalHorizontal("I'm sorry, two player is not yet set up. ", true);
-                    IWriteToTheConsole.Clear(true);
+                    ConsoleController.PrintCenteredVerticalHorizontal("I'm sorry, two player is not yet set up. ", true, true);
                     return GetPlayerCount();
 
                 default:
-                    IWriteToTheConsole.PrintCenteredVerticalHorizontal("Error selecting players. Returning to previous screen. ", true);
-                    IWriteToTheConsole.Clear(true);
+                    ConsoleController.PrintCenteredVerticalHorizontal("Error selecting players. Returning to previous screen. ", true, true);
                     return GetPlayerCount();
             }
 
@@ -116,7 +113,7 @@ namespace Poker
             {
                 "","Selection: "
             };
-            int option = IGetInput.OptionList(message, options, inputRequestMessage);
+            int option = InputController.OptionList(message, options, inputRequestMessage);
             switch (option)
             {
                 case 1:
@@ -134,12 +131,11 @@ namespace Poker
         static void EndApplication()
         {
             ProgramRunning = false;
-            IWriteToTheConsole.PrintCenteredVerticalHorizontal(new string[] {
+            ConsoleController.PrintCenteredVerticalHorizontal(new string[] {
                 "Thank you for playing at Red Rain Casino!", "",
                 "Come play again any time!", "",
                 "Created by Daniel Aguirre. "
-                }, true);
-            IWriteToTheConsole.Clear(true);
+                }, true, true);
         }
 
     }

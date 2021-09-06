@@ -27,11 +27,11 @@ namespace Poker
         /// <summary>
         /// String that should be displayed on the card. Example: "A ♠ "
         /// </summary>
-        public string _StringForCard { get; set; }
+        public string StringForCard { get; set; }
         /// <summary>
         /// String representing the Suit of the card.
         /// </summary>
-        public string _Suit { get; set; }
+        public string Suit { get; set; }
         #endregion
 
 
@@ -185,7 +185,7 @@ namespace Poker
             foreach (var card in handToDraw)
             {
                 // the array for the card we are adding to the hand
-                var cardToAdd = CardForConsole(card._StringForCard, card._Suit);
+                var cardToAdd = CardForConsole(card.StringForCard, card.Suit);
                 
                 //TODO: double check the cardlength + 1 is right
                 for (int cardLine = 0; cardLine < CardLength + 1; cardLine++)

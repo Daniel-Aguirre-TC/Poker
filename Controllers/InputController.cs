@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Poker
 {
-    public interface IGetInput : IWriteToTheConsole
+    public static class InputController
     {
+
 
         #region GetStringResponse
 
@@ -14,7 +17,7 @@ namespace Poker
         /// <returns></returns>
         public static string GetStringResponse(string[] message)
         {
-            PrintCenteredVerticalHorizontal(message);
+            ConsoleController.PrintCenteredVerticalHorizontal(message);
             return Console.ReadLine();
         }
 
@@ -25,13 +28,13 @@ namespace Poker
         /// <returns></returns>
         public static string GetStringResponse(string[] message, int charLimit)
         {
-            PrintCenteredVerticalHorizontal(message);
+            ConsoleController.PrintCenteredVerticalHorizontal(message);
             var response = Console.ReadLine();
-            if(response.Length > charLimit)
+            if (response.Length > charLimit)
             {
                 InvalidInputMessage(charLimit);
                 return GetStringResponse(message, charLimit);
-            }           
+            }
             return response;
         }
 
@@ -42,13 +45,13 @@ namespace Poker
         /// <returns></returns>
         public static string GetStringResponse(string[] message, bool dontEndLine)
         {
-            if(dontEndLine)
+            if (dontEndLine)
             {
-                PrintCenteredVerticalHorizontal(message, true);
+                ConsoleController.PrintCenteredVerticalHorizontal(message, true);
             }
             else
             {
-                PrintCenteredVerticalHorizontal(message);
+                ConsoleController.PrintCenteredVerticalHorizontal(message);
             }
             return Console.ReadLine();
         }
@@ -62,11 +65,11 @@ namespace Poker
         {
             if (dontEndLine)
             {
-                PrintCenteredVerticalHorizontal(message, true);
+                ConsoleController.PrintCenteredVerticalHorizontal(message, true);
             }
             else
             {
-                PrintCenteredVerticalHorizontal(message);
+                ConsoleController.PrintCenteredVerticalHorizontal(message);
             }
             var response = Console.ReadLine();
             if (response.Length > charLimit)
@@ -78,10 +81,7 @@ namespace Poker
         }
 
         #endregion
-
-
-
-        public void YesOrNo(string[] everythingAboveQuestion)
+        public static void YesOrNo(string[] everythingAboveQuestion)
         {
 
         }
@@ -101,21 +101,21 @@ namespace Poker
             // place everything above the options into the wholeMessage
             everythingAboveOptions.CopyTo(wholeMessage, 0);
             // add each option to wholeMessage with "#) " added in front of it.
-            for (int optionNumber = 0 ; optionNumber < optionsToDisplay.Length; optionNumber++)
+            for (int optionNumber = 0; optionNumber < optionsToDisplay.Length; optionNumber++)
             {
-                wholeMessage[everythingAboveOptions.Length + optionNumber] = $"{optionNumber+1}) {optionsToDisplay[optionNumber]}";
-            }          
+                wholeMessage[everythingAboveOptions.Length + optionNumber] = $"{optionNumber + 1}) {optionsToDisplay[optionNumber]}";
+            }
             // Add the input request message to the end of the whole message.
             inputRequestMessage.CopyTo(wholeMessage, wholeMessage.Length - inputRequestMessage.Length);
             // clear the console
-            Clear();
+            ConsoleController.Clear();
             // print the wholeMessage to the screen
-            PrintCenteredVerticalHorizontal(wholeMessage, true);
+            ConsoleController.PrintCenteredVerticalHorizontal(wholeMessage, true);
             // if can parse into an int
             char charInput = Console.ReadKey().KeyChar;
-            if(int.TryParse(charInput.ToString(), out input))
+            if (int.TryParse(charInput.ToString(), out input))
             {
-                if(input != 0 && input <= optionsToDisplay.Length)
+                if (input != 0 && input <= optionsToDisplay.Length)
                 {
                     return input;
                 }
@@ -133,13 +133,12 @@ namespace Poker
         static void InvalidInputMessage(int charLimit)
         {
             var limit = charLimit;
-            PrintCenteredVerticalHorizontal(new string[]
+            ConsoleController.PrintCenteredVerticalHorizontal(new string[]
             {
                 "I'm sorry, but I cannot accept your entry.", "",
                 $"Your entry must be greater than 0 and less than {charLimit}", "",
                 "Press any key to return. "
-            }, true);
-            Clear(true);
+            }, true, true);
         }
 
         /// <summary>
@@ -150,16 +149,14 @@ namespace Poker
         {
             var input = ConvertEnterChar(inputReceived);
 
-            PrintCenteredVerticalHorizontal(new string[] { 
+            ConsoleController.PrintCenteredVerticalHorizontal(new string[] {
                 $"I'm sorry, {input} is not a valid option.", "",
-                "Press any key to return. "       
-            }, true);
-            Clear(true);
+                "Press any key to return. "
+            }, true, true);
         }
 
         #endregion
-       
-        
+
         /// <summary>
         /// Used to convert enter char to prevent issues with printing to the console.
         /// </summary>
@@ -174,6 +171,7 @@ namespace Poker
             }
             return lastInput;
         }
+
 
     }
 }
