@@ -19,6 +19,22 @@ namespace Poker
 
         }
         
+        /// <summary>
+        /// Return an array representing the table.
+        /// </summary>
+        /// <returns></returns>
+        public static string[] Table()
+        {
+            var table = new string[]
+            {
+                "Dealers Hand: ", "", "",
+
+            };
+
+
+            return table;
+
+        }
 
         static string[] deckConsoleImage = new string[]
         {

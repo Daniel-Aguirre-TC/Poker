@@ -6,7 +6,9 @@ namespace Poker
 {
     class BlackJackDealer : GameDealer, IDealCards, IGetInput
     {
-
+        /// <summary>
+        /// Constructor for BlackJackDealer will populate a new deck.
+        /// </summary>
         public BlackJackDealer()
         {
             IDealCards.PopulateDeck(GameDeck);
@@ -44,6 +46,9 @@ namespace Poker
 
         }
 
+        /// <summary>
+        /// Calculate the score for each player. 
+        /// </summary>
         public void CheckHands()
         {
             foreach (var player in AllPlayers)

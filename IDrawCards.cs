@@ -7,11 +7,12 @@ namespace Poker
     interface IDrawCards
     {
 
+        #region Card Size Properties
         // Indexs for changing the string shown on the card. If the card is resized these will need to be changed for layout purposes.
         static int[] TopRightStartIndex = { 3, 12 };
         static int[] BottomLeftStartIndex = { 11, 3 };
-        static int[] SymbolIndex = { 7, 9};
-        
+        static int[] SymbolIndex = { 7, 9 };
+
         //TODO: If my card length is 11 and my goal is two, how can I calculate this on a changing length value?
         // I think I need to start by getting a few different scenerios of what all indexs/sizes are and then creating a formula to get the desired outcome in all situations
         // think how functions are taught in math in grade school
@@ -20,16 +21,29 @@ namespace Poker
         static int CardWidth = 18;
         static int CardLength = 13;
 
-        // string to display on the card
+        #endregion
+
+        #region Card Type Properties
         /// <summary>
         /// String that should be displayed on the card. Example: "A ♠ "
         /// </summary>
         public string _StringForCard { get; set; }
-        // symbol to display on the card
+        /// <summary>
+        /// String representing the Suit of the card.
+        /// </summary>
         public string _Suit { get; set; }
+        #endregion
+
+
+
 
         // enum used to define what type of line we will create for the card.
-        enum CardLine { Top, EmptySpace, TopRightNumber, Symbol, BottomLeftNumber, Bottom  }
+        /// <summary>
+        /// CardLine enum is used for creating the array representing the card in the console. This will tell a switch statement what type of line to create, as it is created one line at a time.
+        /// </summary>
+        enum CardLine { Top, EmptySpace, TopRightNumber, Symbol, BottomLeftNumber, Bottom }
+
+
         /// <summary>
         /// Return a string created with the provided string inserted at the specified 
         /// </summary>
@@ -160,6 +174,26 @@ namespace Poker
                 }
             }
             return arrayToReturn;
+
+        }
+
+        public static string[] HandForConsole(List<Card> handToDraw)
+        {
+            // string to return at the end
+            string[] handToReturn = new string[CardLength + 1];
+            // loop through each card in hand to draw
+            foreach (var card in handToDraw)
+            {
+                // the array for the card we are adding to the hand
+                var cardToAdd = CardForConsole(card._StringForCard, card._Suit);
+                
+                //TODO: double check the cardlength + 1 is right
+                for (int cardLine = 0; cardLine < CardLength + 1; cardLine++)
+                {
+                    handToReturn[cardLine] += " " + cardToAdd[cardLine];
+                }
+            }
+            return handToReturn;
 
         }
 
