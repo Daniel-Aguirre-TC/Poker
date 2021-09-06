@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Poker
 {
@@ -18,51 +19,55 @@ namespace Poker
             Dealer = dealer;
 
         }
-        
-        /// <summary>
-        /// Return an array representing the table.
-        /// </summary>
-        /// <returns></returns>
-        public static string[] Table()
-        {
-            var table = new string[]
-            {
-                "Dealers Hand: ", "", "",
-
-            };
-
-
-            return table;
-
-        }
-
-        static string[] deckConsoleImage = new string[]
-        {
-                    " _____________ ",
-                    "|             |",
-                    "|             |",
-                    "|  Daniel's   |",
-                    "|     Black   |",
-                    "|       Jack  |",
-                    "|             |",
-                    "|   ♠ ♣ ♥ ♦   |",
-                    "|   ~ Deck ~  |",
-                    "|   ♠ ♣ ♥ ♦   |",
-                    "|             |",
-                    "|_____________|",
-        };
 
 
         public override void StartGame()
         {
-            MakeNpc(true);
+            var dealer = MakeNpc(true);
             while (StillPlaying)
-            {
+            {                
                 Dealer.FirstDeal();
-                ConsoleController.Clear(true);
+                // testing printing to the screen.
+                ConsoleController.PrintCenteredVerticalHorizontal(Table(dealer, (UserPlayer)Players[0]), true, true);
             }
-
-
         }
+
+
+
+
+
+
+        /// <summary>
+        /// Return an array representing the table for a one player game.
+        /// </summary>
+        /// <returns></returns>
+        static string[] Table(Npc dealer, UserPlayer player)
+        {
+            return new string[] { "Dealers Hand: ", "", "" }.
+                                    Concat(dealer.HandArray).
+                                    Concat(deckConsoleImage).
+                                    Concat(player.HandArray).ToArray();
+        }
+
+        static string[] deckConsoleImage = new string[]
+        {
+            "", "",
+            " ________________ ",
+            "|                |",
+            "|   Daniel's     |",
+            "|                |",
+            "|       Black    |",
+            "|                |",
+            "|   ♠      Jack  |",
+            "| ♥   ♦          |",
+            "|   ♣            |",
+            "|                |",
+            "|     ♠ ♣ ♥ ♦    |",
+            "|       Deck     |",
+            "|     ♠ ♣ ♥ ♦    |",
+            "|________________|",
+            "", "",
+        };
+
     }
 }

@@ -31,11 +31,11 @@ namespace Poker
             int sum = 0;
             foreach (var card in handToCheck)
             {
-                if(card._Name.Contains("Ace"))
+                if(card.Name.Contains("Ace"))
                 {
                     foundAnAce = true;
                 }
-                sum += card._Value;
+                sum += card.Value;
             }
             if(sum > 21 && foundAnAce)
             {
@@ -66,14 +66,10 @@ namespace Poker
             // deal two cards to each player.
             for (int i = 0; i < 2; i++)
             {
-                for (int playerIndex = 0; playerIndex < AllPlayers.Count - 1; playerIndex++)
+                for (int playerIndex = 0; playerIndex < AllPlayers.Count; playerIndex++)
                 {
                     Card pulled = DealCard(GameDeck);
-                    AllPlayers[playerIndex].Hand.Add(pulled);
-                    if(AllPlayers[playerIndex] is UserPlayer)
-                    {
-                        pulled.ReceivedCardScreen();
-                    }
+                    AllPlayers[playerIndex].ReceiveCard(pulled);
                 }
             }
         }

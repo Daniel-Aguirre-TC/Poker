@@ -22,17 +22,7 @@ namespace Poker
             
         }
 
-        /// <summary>
-        /// Message to be displayed after player puts in their name.
-        /// </summary>
-        public override void PlayerCreatedMessage()
-        {
-            ConsoleController.PrintCenteredVerticalHorizontal(new string[] {
-            $"Nice to meet you, {Name}!", "",
-            "I hope you're ready to play some cards!", "",
-            "Press any key to continue."
-            }, true, true);
-        }
+        #region Player Creation Input and Messages
 
         /// <summary>
         /// Assign Name and then display ArrivalMessage()
@@ -47,5 +37,24 @@ namespace Poker
             PlayerCreatedMessage();
 
         }
+ 
+        /// <summary>
+        /// Message to be displayed after player puts in their name.
+        /// </summary>
+        public override void PlayerCreatedMessage()
+        {
+            ConsoleController.PrintCenteredVerticalHorizontal(new string[] {
+            $"Nice to meet you, {Name}!", "",
+            "I hope you're ready to play some cards!", "",
+            "Press any key to continue."
+            }, true, true);
+        }
+
+        #endregion
+
+
+
+
+
     }
 }

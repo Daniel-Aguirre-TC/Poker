@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Poker
 {
-    class Npc : GamePlayer
+    public class Npc : GamePlayer
     {
         static List<string> NamePool { get; set; }
         static List<string> UsedNames { get; set; }
@@ -44,6 +45,7 @@ namespace Poker
         #endregion
 
 
+
         /// <summary>
         /// If true then Name is assigned to Dealer, else will pull a random name. Then display ArrivalMessage()
         /// </summary>
@@ -57,7 +59,6 @@ namespace Poker
             }
             else AssignName();
         }
-
         /// <summary>
         /// Assign a random name to the Npc.
         /// </summary>
@@ -72,6 +73,7 @@ namespace Poker
             UsedNames.Add(Name);
             NamePool.Remove(Name);
         }
+
 
         /// <summary>
         /// If is true, display that dealer is preparing the table. Else will display default message for a randomly selected npc name.
@@ -101,6 +103,22 @@ namespace Poker
                 $"{Name} is approaching the table!", "",
                 $"We now have a total of {TotalPlayerCount} players at the table. "
             }, true, true);
+        }
+
+        public override void ReceivedCardScreen(Card cardReceived)
+        {
+            // if hand count is one we will hide the card.
+            var cardArray = HandCount == 1 ? Card.CardForConsole("???", "???") : Card.CardForConsole(cardReceived);
+            // a or an depending on card we're receiving
+            var a = cardReceived.Name.Contains("Eight") || cardReceived.Name.Contains("Ace") ? "an" : "a";
+            // message to display under the card dependant upon hand.Count
+            string[] cardDealtMessage = { "", "",
+            HandCount == 1 ? $"{Name} was dealt a card!" : $"{Name} was dealt {a} {cardReceived.Name}",
+            "", "Press any key to continue. "
+            };
+                // Print the card centered to the screen with message above concated below it.
+            ConsoleController.PrintCenteredVerticalHorizontal(cardArray.Concat(cardDealtMessage).ToArray(), true, true);
+            
         }
     }
 }

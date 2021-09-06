@@ -42,9 +42,11 @@ namespace Poker
         /// Create an Npc, if isTrue then will be named "Dealer"
         /// </summary>
         /// <param name="isDealer"></param>
-        public virtual void MakeNpc(bool isDealer)
+        public virtual Npc MakeNpc(bool isDealer)
         {
-            Players.Add(new Npc(isDealer));
+            var npc = new Npc(isDealer);
+            Players.Add(npc);
+            return npc;
         }
 
 
