@@ -99,7 +99,6 @@ namespace Poker
         /// </summary>
         static void GetGameType()
         {
-
             string[] message = new string[]
             {
                 "What type of game would you like to play?", "",
