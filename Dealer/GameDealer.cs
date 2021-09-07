@@ -5,7 +5,7 @@ namespace Poker
 {
     public abstract class GameDealer
     {
-        public List<Card> GameDeck { get; set; }
+        public List<StandardCard> GameDeck { get; set; }
         public List<GamePlayer> AllPlayers { get { return GameManager.CurrentGame.Players; }}
 
         /// <summary>
@@ -13,12 +13,12 @@ namespace Poker
         /// </summary>
         public GameDealer()
         {
-            GameDeck = new List<Card>();
+            GameDeck = new List<StandardCard>();
         }
 
         public abstract void CheckHands();
         public abstract void FirstDeal();
-        public abstract int CalculateHand(List<Card> handToCheck);
+        public abstract int CalculateHand(List<StandardCard> handToCheck);
 
         public virtual void ShuffleDeck()
         {
@@ -28,13 +28,13 @@ namespace Poker
         /// <summary>
         /// Foreach Card.CardSuit, we will add a new card to the deck foreach Card.CardName
         /// </summary>
-        public static void PopulateDeck(List<Card> deck)
+        public static void PopulateDeck(List<StandardCard> deck)
         {
-            foreach (Card.CardSuit suit in Enum.GetValues(typeof(Card.CardSuit)))
+            foreach (StandardCard.CardSuit suit in Enum.GetValues(typeof(StandardCard.CardSuit)))
             {
-                foreach (Card.CardName card in Enum.GetValues(typeof(Card.CardName)))
+                foreach (StandardCard.CardName card in Enum.GetValues(typeof(StandardCard.CardName)))
                 {
-                    deck.Add(new Card(card, suit));
+                    deck.Add(new StandardCard(card, suit));
                 }
             }
         }
@@ -45,13 +45,13 @@ namespace Poker
         /// <param name="deck"></param>
         /// <param name="HandToDealTo"></param>
         /// <returns></returns>
-        public static Card DealCard(List<Card> deck)
+        public static StandardCard DealCard(List<StandardCard> deck)
         {
             // random object used to pull a random card.
             var random = new Random();
             var indexOfCardToPull = random.Next(0, deck.Count - 1);
             // store the string of card pulled in cardPulled
-            Card cardPulled = deck[indexOfCardToPull];
+            StandardCard cardPulled = deck[indexOfCardToPull];
             // remove the card pulled from this instance of deck
             deck.RemoveAt(indexOfCardToPull);
             // if deck is now empty, then repopulate.

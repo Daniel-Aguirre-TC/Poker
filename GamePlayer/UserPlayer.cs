@@ -43,7 +43,7 @@ namespace Poker
         /// </summary>
         public override void PlayerCreatedMessage()
         {
-            ConsoleController.PrintCenteredVerticalHorizontal(new string[] {
+            ConsoleController.PrintVerticalHorizontal(new string[] {
             $"Nice to meet you, {Name}!", "",
             "I hope you're ready to play some cards!", "",
             "Press any key to continue."

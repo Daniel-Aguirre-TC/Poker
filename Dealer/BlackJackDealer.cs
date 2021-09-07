@@ -25,7 +25,7 @@ namespace Poker
         /// </summary>
         /// <param name="handToCheck"></param>
         /// <returns></returns>
-        public override int CalculateHand(List<Card> handToCheck)
+        public override int CalculateHand(List<StandardCard> handToCheck)
         {
             bool foundAnAce = false;
             int sum = 0;
@@ -68,7 +68,7 @@ namespace Poker
             {
                 for (int playerIndex = 0; playerIndex < AllPlayers.Count; playerIndex++)
                 {
-                    Card pulled = DealCard(GameDeck);
+                    StandardCard pulled = DealCard(GameDeck);
                     AllPlayers[playerIndex].ReceiveCard(pulled);
                 }
             }

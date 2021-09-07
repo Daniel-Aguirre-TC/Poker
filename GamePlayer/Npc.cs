@@ -84,7 +84,7 @@ namespace Poker
             if (isDealer)
             {
                 var message = isDealer ? "The Dealer is preparing the table." : $"{Name} is approaching the table!";
-                ConsoleController.PrintCenteredVerticalHorizontal(new string[] {
+                ConsoleController.PrintVerticalHorizontal(new string[] {
                     message, "",
                     $"We now have a total of {TotalPlayerCount} players at the table. "
 
@@ -99,16 +99,17 @@ namespace Poker
         /// </summary>
         public override void PlayerCreatedMessage()
         {
-            ConsoleController.PrintCenteredVerticalHorizontal(new string[] {
+            ConsoleController.PrintVerticalHorizontal(new string[] {
                 $"{Name} is approaching the table!", "",
                 $"We now have a total of {TotalPlayerCount} players at the table. "
-            }, true, true);
+            }, true, true );
         }
 
-        public override void ReceivedCardScreen(Card cardReceived)
+        public override void ReceivedCardScreen(StandardCard cardReceived)
         {
             // if hand count is one we will hide the card.
-            var cardArray = HandCount == 1 ? Card.CardForConsole("???", "???") : Card.CardForConsole(cardReceived);
+            //TODO: logic needs to be rewrote to handle hiding a
+            var cardArray = HandCount == 1 ? cardReceived.CardForConsole(true) : cardReceived.CardForConsole();
             // a or an depending on card we're receiving
             var a = cardReceived.Name.Contains("Eight") || cardReceived.Name.Contains("Ace") ? "an" : "a";
             // message to display under the card dependant upon hand.Count
@@ -116,9 +117,10 @@ namespace Poker
             HandCount == 1 ? $"{Name} was dealt a card!" : $"{Name} was dealt {a} {cardReceived.Name}",
             "", "Press any key to continue. "
             };
-                // Print the card centered to the screen with message above concated below it.
-            ConsoleController.PrintCenteredVerticalHorizontal(cardArray.Concat(cardDealtMessage).ToArray(), true, true);
-            
+            // Print the card centered to the screen with message above concated below it.
+            ConsoleController.PrintVerticalHorizontal(cardArray.Concat(cardDealtMessage).ToArray(), true, true);
+
+
         }
     }
 }

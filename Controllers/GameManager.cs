@@ -47,7 +47,7 @@ namespace Poker
         /// </summary>
         static void GreetUser()
         {
-            ConsoleController.PrintCenteredVerticalHorizontal(new string[]{
+            ConsoleController.PrintVerticalHorizontal(new string[]{
                 "Welcome to Red Rain Casino!", "",
                 "Thank you for taking the time to play my Poker Application.", "",
                 "Created by Daniel Aguirre. "
@@ -77,18 +77,18 @@ namespace Poker
             switch (option)
             {
                 case 1:
-                    ConsoleController.PrintCenteredVerticalHorizontal(new string[]
+                    ConsoleController.PrintVerticalHorizontal(new string[]
                     {
                         "One Player Selected.", "",
                         "Press any key to continue. "
                     }, true, true);
                     return 1;
                 case 2:
-                    ConsoleController.PrintCenteredVerticalHorizontal("I'm sorry, two player is not yet set up. ", true, true);
+                    ConsoleController.PrintVerticalHorizontal("I'm sorry, two player is not yet set up. ", true, true );
                     return GetPlayerCount();
 
                 default:
-                    ConsoleController.PrintCenteredVerticalHorizontal("Error selecting players. Returning to previous screen. ", true, true);
+                    ConsoleController.PrintVerticalHorizontal("Error selecting players. Returning to previous screen. ", true, true );
                     return GetPlayerCount();
             }
 
@@ -130,7 +130,7 @@ namespace Poker
         static void EndApplication()
         {
             ProgramRunning = false;
-            ConsoleController.PrintCenteredVerticalHorizontal(new string[] {
+            ConsoleController.PrintVerticalHorizontal(new string[] {
                 "Thank you for playing at Red Rain Casino!", "",
                 "Come play again any time!", "",
                 "Created by Daniel Aguirre. "
