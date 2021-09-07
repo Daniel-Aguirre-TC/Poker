@@ -187,8 +187,7 @@ namespace Poker
             {
                 Console.WriteLine(CenterHorizontal(textLine));
             }
-        }
-        // CenterMidScreenAndPrint but if bool is true then we will do a Write instead of WriteLine.
+        }        
 
         public static void PrintVerticalHorizontal(string[] arrayOfStringsToPrint, bool dontEndLastLine)
         {

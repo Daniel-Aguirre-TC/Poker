@@ -49,7 +49,7 @@ namespace Poker.Cards
                         arrayToReturn[cardLine] += StringGenerator.FirstMidInsertMidFirst(CardWidth, '|', ' ', 4, "♠      Jack");
                         break;
                     case int line when line == 7:
-                        arrayToReturn[cardLine] += StringGenerator.FirstMidInsertMidFirst(CardWidth, '|', ' ', 1, "♥   ♦");
+                        arrayToReturn[cardLine] += StringGenerator.FirstMidInsertMidFirst(CardWidth, '|', ' ', 2, "♥   ♦");
                         break;
                     case int line when line == 8:
                         arrayToReturn[cardLine] += StringGenerator.FirstMidInsertMidFirst(CardWidth, '|', ' ', 4, "♣");

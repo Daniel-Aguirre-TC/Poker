@@ -8,6 +8,10 @@ namespace Poker
     {
 
 
+        //TODO: Break these down to just getting the input from the user. Create an abstract class that inherited classes then
+        // use these methods to obtain the input they need.... IE PlayerInput will handle getting names
+
+
         #region GetStringResponse
 
         /// <summary>
