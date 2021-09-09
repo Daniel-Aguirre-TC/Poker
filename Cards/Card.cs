@@ -8,7 +8,7 @@ namespace Poker.Cards
     {
 
         public string Name { get; set; }
-        public string[] CardStringArray { get { return CardForConsole(); } }
+        public string[] CardStringArray { get { return ArrayForConsole(); } }
 
         #region Static Card Size Properties
 
@@ -27,7 +27,7 @@ namespace Poker.Cards
 
         #endregion
 
-        public abstract string[] CardForConsole();
+        public abstract string[] ArrayForConsole();
         protected virtual string CardTopLine()
         {
             return StringGenerator.FirstMiddleFirst(CardWidth, ' ', '_');

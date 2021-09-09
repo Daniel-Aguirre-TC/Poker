@@ -125,6 +125,7 @@ namespace Poker
                 case CardName.King:
                     return 10;
                 default:
+
                     //TODO: How to handle this default that should never happen
                     return 0;
             }
@@ -179,7 +180,7 @@ namespace Poker
             foreach (var card in handToDraw)
             {
                 // the array for the card we are adding to the hand
-                var cardToAdd = card.CardForConsole();
+                var cardToAdd = card.ArrayForConsole();
 
                 //TODO: double check the cardlength + 1 is right
                 for (int cardLine = 0; cardLine < CardLength + 1; cardLine++)
@@ -197,7 +198,7 @@ namespace Poker
         /// <param name="cornerStrings"></param>
         /// <param name="centerString"></param>
         /// <returns></returns>
-        public override string[] CardForConsole()
+        public override string[] ArrayForConsole()
         {
             var arrayToReturn = new string[CardLength + 1];
             // cycle through each array
@@ -236,7 +237,7 @@ namespace Poker
         /// <returns></returns>
         public string[] CardForConsole(bool hideCard)
         {
-            var stringToReturn = CardForConsole();
+            var stringToReturn = ArrayForConsole();
             if(hideCard)
             {
                 stringToReturn[TopRightStartIndex[0]] = StringGenerator.FirstMidInsertMidFirst(CardWidth, '|', ' ', TopRightStartIndex[1], "???");
@@ -245,10 +246,6 @@ namespace Poker
             }          
             return stringToReturn;
         }
-
-
-
-
 
     }
 

@@ -47,7 +47,7 @@ namespace Poker
         {
             return new string[] { "Dealers Hand: ", "", "" }.
                                     Concat(dealer.HandArray).
-                                    Concat(DeckCard.CardForConsole()).
+                                    Concat(DeckCard.ArrayForConsole()).
                                     Concat(player.HandArray).ToArray();
         }
 

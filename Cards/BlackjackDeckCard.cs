@@ -7,27 +7,26 @@ namespace Poker.Cards
     public class BlackjackDeckCard : Card
     {
 
-        static string[] deckConsoleImage = new string[]
-        {
-            "", "",
-            " ________________ ",
-            "|                |",
-            "|   Daniel's     |",
-            "|                |",
-            "|       Black    |",
-            "|                |",
-            "|   ♠      Jack  |",
-            "| ♥   ♦          |",
-            "|   ♣            |",
-            "|                |",
-            "|     ♠ ♣ ♥ ♦    |",
-            "|       Deck     |",
-            "|     ♠ ♣ ♥ ♦    |",
-            "|________________|",
-            "", "",
-        };
-
-        public override string[] CardForConsole()
+        //static string[] deckConsoleImage = new string[]
+        //{
+        //    "", "",
+        //    " ________________ ",
+        //    "|                |",
+        //    "|   Daniel's     |",
+        //    "|                |",
+        //    "|       Black    |",
+        //    "|                |",
+        //    "|   ♠      Jack  |",
+        //    "| ♥   ♦          |",
+        //    "|   ♣            |",
+        //    "|                |",
+        //    "|     ♠ ♣ ♥ ♦    |",
+        //    "|       Deck     |",
+        //    "|     ♠ ♣ ♥ ♦    |",
+        //    "|________________|",
+        //    "", "",
+        //};
+        public override string[] ArrayForConsole()
         {
             var arrayToReturn = new string[CardLength + 1];
             // cycle through each array
@@ -71,5 +70,6 @@ namespace Poker.Cards
             }
             return arrayToReturn;
         }
+    
     }
 }

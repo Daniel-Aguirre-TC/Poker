@@ -11,6 +11,7 @@ namespace Poker
         static List<string> UsedNames { get; set; }
         static Random random = new Random();
 
+
         #region Constructors
 
         /// <summary>
@@ -75,6 +76,7 @@ namespace Poker
         }
 
 
+
         /// <summary>
         /// If is true, display that dealer is preparing the table. Else will display default message for a randomly selected npc name.
         /// </summary>
@@ -109,7 +111,7 @@ namespace Poker
         {
             // if hand count is one we will hide the card.
             //TODO: logic needs to be rewrote to handle hiding a
-            var cardArray = HandCount == 1 ? cardReceived.CardForConsole(true) : cardReceived.CardForConsole();
+            var cardArray = HandCount == 1 ? cardReceived.CardForConsole(true) : cardReceived.ArrayForConsole();
             // a or an depending on card we're receiving
             var a = cardReceived.Name.Contains("Eight") || cardReceived.Name.Contains("Ace") ? "an" : "a";
             // message to display under the card dependant upon hand.Count

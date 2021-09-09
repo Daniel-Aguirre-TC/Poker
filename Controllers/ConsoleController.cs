@@ -47,6 +47,7 @@ namespace Poker
 
         #endregion
 
+
         #region PrintCenteredHorizontal
 
         /// <summary>
@@ -153,6 +154,7 @@ namespace Poker
 
         #endregion
 
+
         #region PrintCenteredVerticalHorizontal
 
         public static void PrintVerticalHorizontal(string stringToPrint)
@@ -234,6 +236,7 @@ namespace Poker
 
         #endregion
 
+
         /// <summary>
         /// Return the provided string, with padding to the left to center it horizontally on the screen based on Console.WindowWidth
         /// </summary>
@@ -247,6 +250,9 @@ namespace Poker
             }
             return textToCenter.PadLeft((int)MathF.Round((Console.WindowWidth / 2) + (textToCenter.Length / 2)));
         }
+
+
+        #region Clear
 
         /// <summary>
         /// Clear Console
@@ -294,6 +300,8 @@ namespace Poker
                 Clear(ArrayToReprintAfterClear);
             }
         }
+        
+        #endregion
 
 
     }

@@ -35,7 +35,6 @@ namespace Poker
             "Name: ",
             }, true, NameMaxLength);
             PlayerCreatedMessage();
-
         }
  
         /// <summary>
